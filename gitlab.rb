@@ -2933,7 +2933,7 @@ postgresql['enable'] = false
 
 ##! Attempt to modify kernel paramaters. To skip this in containers where the
 ##! relevant file system is read-only, set the value to false.
-# package['modify_kernel_parameters'] = true
+package['modify_kernel_parameters'] = false
 
 ##! Specify maximum number of tasks that can be created by the systemd unit
 ##! Will be populated as TasksMax value to the unit file if user is on a systemd
