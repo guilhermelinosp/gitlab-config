@@ -797,14 +797,14 @@ external_url 'http://gitlab.example.com'
 ### GitLab database settings
 ###! Docs: https://docs.gitlab.com/omnibus/settings/database.html
 ###! **Only needed if you use an external database.**
-# gitlab_rails['db_adapter'] = "postgresql"
-# gitlab_rails['db_encoding'] = "unicode"
-# gitlab_rails['db_collation'] = nil
-# gitlab_rails['db_database'] = "gitlabhq_production"
-# gitlab_rails['db_username'] = "gitlab"
-# gitlab_rails['db_password'] = nil
-# gitlab_rails['db_host'] = nil
-# gitlab_rails['db_port'] = 5432
+gitlab_rails['db_adapter'] = "postgresql"
+gitlab_rails['db_encoding'] = "unicode"
+#gitlab_rails['db_collation'] = nil
+gitlab_rails['db_database'] = "gitlabhq_production"
+gitlab_rails['db_username'] = "postgres"
+gitlab_rails['db_password'] = "postgres"
+gitlab_rails['db_host'] = "192.168.1.4"
+gitlab_rails['db_port'] = 5432
 # gitlab_rails['db_socket'] = nil
 # gitlab_rails['db_sslmode'] = nil
 # gitlab_rails['db_sslcompression'] = 0
@@ -1492,7 +1492,7 @@ external_url 'http://gitlab.example.com'
 ##! By default, reconfigure reloads postgresql if it is running. If you
 ##! change any of these settings, be sure to run `gitlab-ctl restart postgresql`
 ##! after reconfigure in order for the changes to take effect.
-# postgresql['enable'] = true
+postgresql['enable'] = false
 # postgresql['listen_address'] = nil
 # postgresql['port'] = 5432
 
@@ -3226,7 +3226,7 @@ external_url 'http://gitlab.example.com'
 ##! See the GitLab PgBouncer documentation: https://docs.gitlab.com/ee/administration/postgresql/pgbouncer.html
 ##! See the PgBouncer page http://www.pgbouncer.org/config.html for details
 ################################################################################
-# pgbouncer['enable'] = false
+pgbouncer['enable'] = false
 # pgbouncer['log_directory'] = '/var/log/gitlab/pgbouncer'
 # pgbouncer['log_group'] = nil
 # pgbouncer['data_directory'] = '/var/opt/gitlab/pgbouncer'
@@ -3337,7 +3337,7 @@ external_url 'http://gitlab.example.com'
 ################################################################################
 ## Patroni (EE only)
 ################################################################################
-# patroni['enable'] = false
+patroni['enable'] = false
 
 # patroni['dir'] = '/var/opt/gitlab/patroni'
 # patroni['ctl_command'] = '/opt/gitlab/embedded/bin/patronictl'
