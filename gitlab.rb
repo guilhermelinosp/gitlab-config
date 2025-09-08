@@ -845,8 +845,8 @@ gitlab_rails['db_port'] = 5432
 ###! Docs: https://docs.gitlab.com/omnibus/settings/redis.html
 
 #### Redis TCP connection
-# gitlab_rails['redis_host'] = "127.0.0.1"
-# gitlab_rails['redis_port'] = 6379
+gitlab_rails['redis_host'] = "192.168.1.12"
+gitlab_rails['redis_port'] = 6379
 # gitlab_rails['redis_ssl'] = false
 # gitlab_rails['redis_password'] = nil
 # gitlab_rails['redis_database'] = 0
@@ -1656,7 +1656,7 @@ postgresql['enable'] = false
 ##! Docs: https://docs.gitlab.com/omnibus/settings/redis.html
 ################################################################################
 
-# redis['enable'] = true
+redis['enable'] = false
 # redis['ha'] = false
 # redis['start_down'] = false
 # redis['set_replicaof'] = false
