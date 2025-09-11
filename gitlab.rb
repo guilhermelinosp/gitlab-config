@@ -1018,12 +1018,12 @@ gitlab_rails['redis_port'] = 6379
 ##! Docs: https://docs.gitlab.com/ee/administration/packages/container_registry.html
 ################################################################################
 
-registry_external_url 'http://registry.etherlab.com.br'
+#registry_external_url 'http://registry.etherlab.com.br'
 
 ### Settings used by GitLab application
 gitlab_rails['registry_enabled'] = true
-gitlab_rails['registry_host'] = "registry.etherlab.com.br"
-gitlab_rails['registry_port'] = "5005"
+#gitlab_rails['registry_host'] = "registry.etherlab.com.br"
+#gitlab_rails['registry_port'] = "5005"
 gitlab_rails['registry_path'] = "/var/opt/gitlab/gitlab-rails/shared/registry"
 
 ###! Notification secret, it's used to authenticate notification requests to GitLab application
