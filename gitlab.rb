@@ -29,7 +29,7 @@
 ##! On AWS EC2 instances, we also attempt to fetch the public hostname/IP
 ##! address from AWS. For more details, see:
 ##! https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instancedata-data-retrieval.html
-external_url 'http://gitlab.example.com'
+external_url 'http://gitlab.etherlab.com.br'
 
 ## Roles for multi-instance GitLab
 ##! The default is to have no roles enabled, which results in GitLab running as an all-in-one instance.
@@ -131,7 +131,7 @@ external_url 'http://gitlab.example.com'
 # gitlab_rails['gitlab_email_smime_ca_certs_file'] = '/etc/gitlab/ssl/gitlab_smime_cas.crt'
 
 ### GitLab user privileges
-# gitlab_rails['gitlab_username_changing_enabled'] = true
+gitlab_rails['gitlab_username_changing_enabled'] = false
 
 ### Default Theme
 ###! Available values:
@@ -435,8 +435,8 @@ external_url 'http://gitlab.example.com'
 # }
 
 ### Git LFS
-# gitlab_rails['lfs_enabled'] = true
-# gitlab_rails['lfs_storage_path'] = "/var/opt/gitlab/gitlab-rails/shared/lfs-objects"
+gitlab_rails['lfs_enabled'] = true
+gitlab_rails['lfs_storage_path'] = "/var/opt/gitlab/gitlab-rails/shared/lfs-objects"
 # gitlab_rails['lfs_object_store_enabled'] = false
 # gitlab_rails['lfs_object_store_proxy_download'] = false
 # gitlab_rails['lfs_object_store_remote_directory'] = "lfs-objects"
@@ -525,7 +525,7 @@ external_url 'http://gitlab.example.com'
 # gitlab_rails['pages_local_store_path'] = "/var/opt/gitlab/gitlab-rails/shared/pages"
 
 ### Impersonation settings
-# gitlab_rails['impersonation_enabled'] = true
+gitlab_rails['impersonation_enabled'] = false
 
 ### Disable jQuery and CSS animations
 # gitlab_rails['disable_animations'] = false
@@ -534,7 +534,7 @@ external_url 'http://gitlab.example.com'
 # gitlab_rails['application_settings_cache_seconds'] = 60
 
 ### Usage Statistics
-# gitlab_rails['usage_ping_enabled'] = true
+gitlab_rails['usage_ping_enabled'] = false
 
 ### GitLab Mattermost
 ###! These settings are void if Mattermost is installed on the same omnibus
@@ -663,17 +663,17 @@ external_url 'http://gitlab.example.com'
 ### Backup Settings
 ###! Docs: https://docs.gitlab.com/omnibus/settings/backups.html
 
-# gitlab_rails['manage_backup_path'] = true
+gitlab_rails['manage_backup_path'] = true
 # gitlab_rails['backup_path'] = "/var/opt/gitlab/backups"
 # gitlab_rails['backup_gitaly_backup_path'] = "/opt/gitlab/embedded/bin/gitaly-backup"
 
 ###! Docs: https://docs.gitlab.com/ee/administration/backup_restore/backup_gitlab.html#backup-archive-permissions
-# gitlab_rails['backup_archive_permissions'] = 0644
+gitlab_rails['backup_archive_permissions'] = 0644
 
 # gitlab_rails['backup_pg_schema'] = 'public'
 
 ###! The duration in seconds to keep backups before they are allowed to be deleted
-# gitlab_rails['backup_keep_time'] = 604800
+gitlab_rails['backup_keep_time'] = 604800
 
 # gitlab_rails['backup_upload_connection'] = {
 #   'provider' => 'AWS',
@@ -803,7 +803,7 @@ gitlab_rails['db_encoding'] = "unicode"
 gitlab_rails['db_database'] = "gitlabhq_production"
 gitlab_rails['db_username'] = "postgres"
 gitlab_rails['db_password'] = "postgres"
-gitlab_rails['db_host'] = "192.168.1.4"
+gitlab_rails['db_host'] = "192.168.1.119"
 gitlab_rails['db_port'] = 5432
 # gitlab_rails['db_socket'] = nil
 # gitlab_rails['db_sslmode'] = nil
@@ -845,7 +845,7 @@ gitlab_rails['db_port'] = 5432
 ###! Docs: https://docs.gitlab.com/omnibus/settings/redis.html
 
 #### Redis TCP connection
-gitlab_rails['redis_host'] = "192.168.1.12"
+gitlab_rails['redis_host'] = "192.168.1.120"
 gitlab_rails['redis_port'] = 6379
 # gitlab_rails['redis_ssl'] = false
 # gitlab_rails['redis_password'] = nil
@@ -1018,13 +1018,13 @@ gitlab_rails['redis_port'] = 6379
 ##! Docs: https://docs.gitlab.com/ee/administration/packages/container_registry.html
 ################################################################################
 
-# registry_external_url 'https://registry.example.com'
+registry_external_url 'https://registry.etherlab.com.br'
 
 ### Settings used by GitLab application
-# gitlab_rails['registry_enabled'] = true
-# gitlab_rails['registry_host'] = "registry.gitlab.example.com"
-# gitlab_rails['registry_port'] = "5005"
-# gitlab_rails['registry_path'] = "/var/opt/gitlab/gitlab-rails/shared/registry"
+gitlab_rails['registry_enabled'] = true
+gitlab_rails['registry_host'] = "registry.gitlab.etherlab.com.br"
+gitlab_rails['registry_port'] = "5005"
+gitlab_rails['registry_path'] = "/var/opt/gitlab/gitlab-rails/shared/registry"
 
 ###! Notification secret, it's used to authenticate notification requests to GitLab application
 ###! You only need to change this when you use external Registry service, otherwise
@@ -1798,7 +1798,7 @@ redis['enable'] = false
 
 # nginx['enable'] = true
 # nginx['client_max_body_size'] = '0'
-# nginx['redirect_http_to_https'] = false
+nginx['redirect_http_to_https'] = false
 # nginx['redirect_http_to_https_port'] = 80
 
 ##! Most root CA's are included by default
@@ -1854,7 +1854,12 @@ redis['enable'] = false
 ##! Docs: https://docs.gitlab.com/omnibus/settings/nginx.html#configuring-the-proxy-protocol
 # nginx['proxy_protocol'] = false
 
-# nginx['custom_gitlab_server_config'] = "location ^~ /foo-namespace/bar-project/raw/ {\n deny all;\n}\n"
+nginx['custom_gitlab_server_config'] = "
+  location ~ ^/(assets|uploads|avatars)/ {
+    expires 1y;
+    add_header Cache-Control public;
+  }
+"
 # nginx['custom_nginx_config'] = "include /etc/nginx/conf.d/example.conf;"
 # nginx['proxy_read_timeout'] = 3600
 # nginx['proxy_connect_timeout'] = 300
@@ -1928,6 +1933,10 @@ redis['enable'] = false
 ##! Docs: https://docs.gitlab.com/omnibus/settings/logs.html
 ################################################################################
 
+logging['svlogd_size'] = 200 * 1024 * 1024
+logging['svlogd_num'] = 30
+logging['svlogd_timeout'] = 24 * 60 * 60
+logging['svlogd_filter'] = "gzip"
 # logging['svlogd_size'] = 200 * 1024 * 1024 # rotate after 200 MB of log data
 # logging['svlogd_num'] = 30 # keep 30 rotated log files
 # logging['svlogd_timeout'] = 24 * 60 * 60 # rotate after 24 hours
@@ -2653,7 +2662,7 @@ redis['enable'] = false
 # gitlab_exporter['extra_config_command'] = nil
 
 ##! To completely disable prometheus, and all of it's exporters, set to false
-# prometheus_monitoring['enable'] = true
+prometheus_monitoring['enable'] = false
 
 ################################################################################
 ## Gitaly
@@ -3001,8 +3010,8 @@ package['modify_kernel_parameters'] = false
 ##! Docs: https://docs.gitlab.com/ee/administration/packages/
 ################################################################################
 
-# gitlab_rails['packages_enabled'] = true
-# gitlab_rails['packages_storage_path'] = "/var/opt/gitlab/gitlab-rails/shared/packages"
+gitlab_rails['packages_enabled'] = true
+gitlab_rails['packages_storage_path'] = "/var/opt/gitlab/gitlab-rails/shared/packages"
 # gitlab_rails['packages_object_store_enabled'] = false
 # gitlab_rails['packages_object_store_proxy_download'] = false
 # gitlab_rails['packages_object_store_remote_directory'] = "packages"
@@ -3023,8 +3032,8 @@ package['modify_kernel_parameters'] = false
 ##! Docs: https://docs.gitlab.com/ee/administration/packages/dependency_proxy.html
 ################################################################################
 
-# gitlab_rails['dependency_proxy_enabled'] = true
-# gitlab_rails['dependency_proxy_storage_path'] = "/var/opt/gitlab/gitlab-rails/shared/dependency_proxy"
+gitlab_rails['dependency_proxy_enabled'] = true
+gitlab_rails['dependency_proxy_storage_path'] = "/var/opt/gitlab/gitlab-rails/shared/dependency_proxy"
 # gitlab_rails['dependency_proxy_object_store_enabled'] = false
 # gitlab_rails['dependency_proxy_object_store_proxy_download'] = false
 # gitlab_rails['dependency_proxy_object_store_remote_directory'] = "dependency_proxy"
