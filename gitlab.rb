@@ -29,7 +29,7 @@
 ##! On AWS EC2 instances, we also attempt to fetch the public hostname/IP
 ##! address from AWS. For more details, see:
 ##! https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instancedata-data-retrieval.html
-external_url 'http://gitlab.etherlab.com.br'
+external_url 'http://192.168.1.123'
 
 ## Roles for multi-instance GitLab
 ##! The default is to have no roles enabled, which results in GitLab running as an all-in-one instance.
@@ -1022,8 +1022,8 @@ gitlab_rails['redis_port'] = 6379
 
 ### Settings used by GitLab application
 gitlab_rails['registry_enabled'] = true
-#gitlab_rails['registry_host'] = "registry.etherlab.com.br"
-#gitlab_rails['registry_port'] = "5005"
+gitlab_rails['registry_host'] = "192.168.1.123"
+gitlab_rails['registry_port'] = "5005"
 gitlab_rails['registry_path'] = "/var/opt/gitlab/gitlab-rails/shared/registry"
 
 ###! Notification secret, it's used to authenticate notification requests to GitLab application
