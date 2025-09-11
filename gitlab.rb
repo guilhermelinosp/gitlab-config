@@ -1328,17 +1328,17 @@ gitlab_workhorse['log_format'] = "json"
 ##! Docs: https://docs.gitlab.com/ee/administration/operations/puma.html
 ################################################################################
 
-puma['enable'] = false
+# puma['enable'] = false
 # puma['ha'] = false
 # puma['worker_timeout'] = 60
-puma['worker_processes'] = 2
-puma['min_threads'] = 1
-puma['max_threads'] = 2
+# puma['worker_processes'] = 2
+# puma['min_threads'] = 1
+# puma['max_threads'] = 2
 
 ### Advanced settings
 # puma['listen'] = '127.0.0.1'
 # puma['port'] = 8080
-puma['socket'] = '/var/opt/gitlab/gitlab-rails/sockets/gitlab.socket'
+# puma['socket'] = '/var/opt/gitlab/gitlab-rails/sockets/gitlab.socket'
 # puma['somaxconn'] = 2048
 
 ### SSL settings
@@ -1361,7 +1361,7 @@ puma['socket'] = '/var/opt/gitlab/gitlab-rails/sockets/gitlab.socket'
 ###! Docs: https://github.com/schneems/puma_worker_killer
 # puma['per_worker_max_memory_mb'] = 1024
 
-puma['exporter_enabled'] = false
+# puma['exporter_enabled'] = false
 # puma['exporter_address'] = "127.0.0.1"
 # puma['exporter_port'] = 8083
 # puma['exporter_tls_enabled'] = false
