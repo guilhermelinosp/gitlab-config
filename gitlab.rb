@@ -1328,12 +1328,12 @@ gitlab_workhorse['enable'] = true
 ##! Docs: https://docs.gitlab.com/ee/administration/operations/puma.html
 ################################################################################
 
-puma['enable'] = true
+puma['enable'] = false
 # puma['ha'] = false
 # puma['worker_timeout'] = 60
-# puma['worker_processes'] = 2
-# puma['min_threads'] = 4
-# puma['max_threads'] = 4
+puma['worker_processes'] = 2
+puma['min_threads'] = 1
+puma['max_threads'] = 2
 
 ### Advanced settings
 # puma['listen'] = '127.0.0.1'
@@ -1386,12 +1386,12 @@ puma['exporter_enabled'] = false
 ##! can be used to ensure certain queues are able to handle additional workload.
 ##! https://docs.gitlab.com/ee/administration/sidekiq/extra_sidekiq_processes.html
 
-# sidekiq['enable'] = true
+sidekiq['enable'] = true
 # sidekiq['log_directory'] = "/var/log/gitlab/sidekiq"
 # sidekiq['log_format'] = "json"
 # sidekiq['shutdown_timeout'] = 4
 # sidekiq['interval'] = nil
-# sidekiq['concurrency'] = 20
+sidekiq['concurrency'] = 10
 
 ##! GitLab allows route a job to a particular queue determined by an array of ##! routing rules.
 ##! Each routing rule is a tuple of queue selector query and corresponding queue. By default,
@@ -1933,10 +1933,10 @@ nginx['custom_gitlab_server_config'] = "
 ##! Docs: https://docs.gitlab.com/omnibus/settings/logs.html
 ################################################################################
 
-logging['svlogd_size'] = 200 * 1024 * 1024
-logging['svlogd_num'] = 30
-logging['svlogd_timeout'] = 24 * 60 * 60
-logging['svlogd_filter'] = "gzip"
+logging['svlogd_size'] = 100 * 1024 * 1024
+logging['svlogd_num'] = 10
+#logging['svlogd_timeout'] = 24 * 60 * 60
+#logging['svlogd_filter'] = "gzip"
 # logging['svlogd_size'] = 200 * 1024 * 1024 # rotate after 200 MB of log data
 # logging['svlogd_num'] = 30 # keep 30 rotated log files
 # logging['svlogd_timeout'] = 24 * 60 * 60 # rotate after 24 hours
@@ -1951,7 +1951,7 @@ logging['svlogd_filter'] = "gzip"
 # logging['logrotate_method'] = "copytruncate" # see 'man logrotate'
 # logging['logrotate_postrotate'] = nil # no postrotate command by default
 # logging['logrotate_dateformat'] = nil # use date extensions for rotated files rather than numbers e.g. a value of "-%Y-%m-%d" would give rotated files like production.log-2016-03-09.gz
-# logging['log_group'] = nil # assign this group to specified log directories and use it for runit-managed logs, can be overridden per-service
+logging['log_group'] = 'warn' # assign this group to specified log directories and use it for runit-managed logs, can be overridden per-service
 
 ### UDP log forwarding
 ##! Docs: http://docs.gitlab.com/omnibus/settings/logs.html#udp-log-forwarding
@@ -3032,8 +3032,8 @@ gitlab_rails['packages_storage_path'] = "/var/opt/gitlab/gitlab-rails/shared/pac
 ##! Docs: https://docs.gitlab.com/ee/administration/packages/dependency_proxy.html
 ################################################################################
 
-gitlab_rails['dependency_proxy_enabled'] = true
-gitlab_rails['dependency_proxy_storage_path'] = "/var/opt/gitlab/gitlab-rails/shared/dependency_proxy"
+#gitlab_rails['dependency_proxy_enabled'] = false
+#gitlab_rails['dependency_proxy_storage_path'] = "/var/opt/gitlab/gitlab-rails/shared/dependency_proxy"
 # gitlab_rails['dependency_proxy_object_store_enabled'] = false
 # gitlab_rails['dependency_proxy_object_store_proxy_download'] = false
 # gitlab_rails['dependency_proxy_object_store_remote_directory'] = "dependency_proxy"
