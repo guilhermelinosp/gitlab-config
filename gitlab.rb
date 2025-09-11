@@ -1951,7 +1951,7 @@ logging['svlogd_num'] = 10
 # logging['logrotate_method'] = "copytruncate" # see 'man logrotate'
 # logging['logrotate_postrotate'] = nil # no postrotate command by default
 # logging['logrotate_dateformat'] = nil # use date extensions for rotated files rather than numbers e.g. a value of "-%Y-%m-%d" would give rotated files like production.log-2016-03-09.gz
-logging['log_group'] = 'warn' # assign this group to specified log directories and use it for runit-managed logs, can be overridden per-service
+#logging['log_group'] = 'warn' # assign this group to specified log directories and use it for runit-managed logs, can be overridden per-service
 
 ### UDP log forwarding
 ##! Docs: http://docs.gitlab.com/omnibus/settings/logs.html#udp-log-forwarding
@@ -3572,7 +3572,7 @@ consul['enable'] = false
 ## Spamcheck (EE only)
 #################################################################################
 
-spamcheck['enable'] = false
+# spamcheck['enable'] = false
 # spamcheck['dir'] = '/var/opt/gitlab/spamcheck'
 # spamcheck['port'] = 8001
 # spamcheck['external_port'] = nil
@@ -3602,7 +3602,7 @@ spamcheck['enable'] = false
 #################################################################################
 ## gitlab-backup-cli settings
 #################################################################################
-gitlab_backup_cli['enable'] = false
+# gitlab_backup_cli['enable'] = false
 # gitlab_backup_cli['user'] = 'gitlab-backup'
 # gitlab_backup_cli['group'] = 'gitlab-backup'
 # gitlab_backup_cli['dir'] = '/var/opt/gitlab/backups'
