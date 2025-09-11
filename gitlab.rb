@@ -1190,7 +1190,7 @@ gitlab_rails['registry_path'] = "/var/opt/gitlab/gitlab-rails/shared/registry"
 ##! Docs: https://gitlab.com/gitlab-org/gitlab/-/blob/master/workhorse/README.md
 ################################################################################
 
-gitlab_workhorse['enable'] = false
+gitlab_workhorse['enable'] = true
 # gitlab_workhorse['ha'] = false
 # gitlab_workhorse['alt_document_root'] = nil
 
@@ -1328,7 +1328,7 @@ gitlab_workhorse['enable'] = false
 ##! Docs: https://docs.gitlab.com/ee/administration/operations/puma.html
 ################################################################################
 
-# puma['enable'] = true
+puma['enable'] = true
 # puma['ha'] = false
 # puma['worker_timeout'] = 60
 # puma['worker_processes'] = 2
