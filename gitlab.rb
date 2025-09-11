@@ -416,9 +416,9 @@ gitlab_rails['artifacts_path'] = "/var/opt/gitlab/gitlab-rails/shared/artifacts"
 # }
 
 ### External merge request diffs
-gitlab_rails['external_diffs_enabled'] = true
+gitlab_rails['external_diffs_enabled'] = false
 # gitlab_rails['external_diffs_when'] = nil
-gitlab_rails['external_diffs_storage_path'] = "/var/opt/gitlab/gitlab-rails/shared/external-diffs"
+# gitlab_rails['external_diffs_storage_path'] = "/var/opt/gitlab/gitlab-rails/shared/external-diffs"
 # gitlab_rails['external_diffs_object_store_enabled'] = false
 # gitlab_rails['external_diffs_object_store_proxy_download'] = false
 # gitlab_rails['external_diffs_object_store_remote_directory'] = "external-diffs"
@@ -435,8 +435,8 @@ gitlab_rails['external_diffs_storage_path'] = "/var/opt/gitlab/gitlab-rails/shar
 # }
 
 ### Git LFS
-gitlab_rails['lfs_enabled'] = true
-gitlab_rails['lfs_storage_path'] = "/var/opt/gitlab/gitlab-rails/shared/lfs-objects"
+gitlab_rails['lfs_enabled'] = false
+# gitlab_rails['lfs_storage_path'] = "/var/opt/gitlab/gitlab-rails/shared/lfs-objects"
 # gitlab_rails['lfs_object_store_enabled'] = false
 # gitlab_rails['lfs_object_store_proxy_download'] = false
 # gitlab_rails['lfs_object_store_remote_directory'] = "lfs-objects"
@@ -474,8 +474,8 @@ gitlab_rails['uploads_storage_path'] = "/opt/gitlab/embedded/service/gitlab-rail
 
 ### Terraform state
 ###! Docs: https://docs.gitlab.com/ee/administration/terraform_state
-gitlab_rails['terraform_state_enabled'] = true
-gitlab_rails['terraform_state_storage_path'] = "/var/opt/gitlab/gitlab-rails/shared/terraform_state"
+gitlab_rails['terraform_state_enabled'] = false
+# gitlab_rails['terraform_state_storage_path'] = "/var/opt/gitlab/gitlab-rails/shared/terraform_state"
 # gitlab_rails['terraform_state_object_store_enabled'] = false
 # gitlab_rails['terraform_state_object_store_remote_directory'] = "terraform"
 # gitlab_rails['terraform_state_object_store_connection'] = {
@@ -491,8 +491,8 @@ gitlab_rails['terraform_state_storage_path'] = "/var/opt/gitlab/gitlab-rails/sha
 # }
 
 ### CI Secure Files
-gitlab_rails['ci_secure_files_enabled'] = true
-gitlab_rails['ci_secure_files_storage_path'] = "/var/opt/gitlab/gitlab-rails/shared/ci_secure_files"
+gitlab_rails['ci_secure_files_enabled'] = false
+# gitlab_rails['ci_secure_files_storage_path'] = "/var/opt/gitlab/gitlab-rails/shared/ci_secure_files"
 # gitlab_rails['ci_secure_files_object_store_enabled'] = false
 # gitlab_rails['ci_secure_files_object_store_remote_directory'] = "ci-secure-files"
 # gitlab_rails['ci_secure_files_object_store_connection'] = {
@@ -3032,7 +3032,7 @@ gitlab_rails['packages_storage_path'] = "/var/opt/gitlab/gitlab-rails/shared/pac
 ##! Docs: https://docs.gitlab.com/ee/administration/packages/dependency_proxy.html
 ################################################################################
 
-#gitlab_rails['dependency_proxy_enabled'] = false
+gitlab_rails['dependency_proxy_enabled'] = false
 #gitlab_rails['dependency_proxy_storage_path'] = "/var/opt/gitlab/gitlab-rails/shared/dependency_proxy"
 # gitlab_rails['dependency_proxy_object_store_enabled'] = false
 # gitlab_rails['dependency_proxy_object_store_proxy_download'] = false
