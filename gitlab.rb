@@ -1933,10 +1933,10 @@ nginx['error_log_level'] = "error"
 ##! Docs: https://docs.gitlab.com/omnibus/settings/logs.html
 ################################################################################
 
-logging['svlogd_size'] = 100 * 1024 * 1024
-logging['svlogd_num'] = 10
-#logging['svlogd_timeout'] = 24 * 60 * 60
-#logging['svlogd_filter'] = "gzip"
+# logging['svlogd_size'] = 100 * 1024 * 1024
+# logging['svlogd_num'] = 10
+# logging['svlogd_timeout'] = 24 * 60 * 60
+# logging['svlogd_filter'] = "gzip"
 # logging['svlogd_size'] = 200 * 1024 * 1024 # rotate after 200 MB of log data
 # logging['svlogd_num'] = 30 # keep 30 rotated log files
 # logging['svlogd_timeout'] = 24 * 60 * 60 # rotate after 24 hours
@@ -1983,7 +1983,7 @@ logging['udp_log_shipping_host'] = nil
 ##! Docs: https://docs.gitlab.com/omnibus/settings/configuration.html#disable-user-and-group-account-management
 ################################################################################
 
-# manage_accounts['enable'] = true
+manage_accounts['enable'] = false
 
 ################################################################################
 ## Storage directories
