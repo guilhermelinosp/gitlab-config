@@ -145,7 +145,7 @@ gitlab_rails['gitlab_username_changing_enabled'] = false
 ###! `8`  for Light Green
 ###! `9`  for Red
 ###! `10` for Light Red
-# gitlab_rails['gitlab_default_theme'] = 2
+gitlab_rails['gitlab_default_theme'] = 2
 
 ### Default Color Mode
 ### Available values:
@@ -222,7 +222,7 @@ gitlab_rails['gitlab_username_changing_enabled'] = false
 ### Webhook Settings
 ###! Number of seconds to wait for HTTP response after sending webhook HTTP POST
 ###! request (default: 10)
-# gitlab_rails['webhook_timeout'] = 10
+gitlab_rails['webhook_timeout'] = 15
 
 ### HTTP client settings
 ###! This is for setting up the mutual TLS client cert and password for the certificate file.
@@ -396,8 +396,8 @@ gitlab_rails['gitlab_username_changing_enabled'] = false
 # gitlab_rails['object_store']['objects']['pages']['bucket'] = nil
 
 ### Job Artifacts
-# gitlab_rails['artifacts_enabled'] = true
-# gitlab_rails['artifacts_path'] = "/var/opt/gitlab/gitlab-rails/shared/artifacts"
+gitlab_rails['artifacts_enabled'] = true
+gitlab_rails['artifacts_path'] = "/var/opt/gitlab/gitlab-rails/shared/artifacts"
 ###! Job artifacts Object Store
 ###! Docs: https://docs.gitlab.com/ee/administration/job_artifacts.html#using-object-storage
 # gitlab_rails['artifacts_object_store_enabled'] = false
@@ -416,9 +416,9 @@ gitlab_rails['gitlab_username_changing_enabled'] = false
 # }
 
 ### External merge request diffs
-# gitlab_rails['external_diffs_enabled'] = false
+gitlab_rails['external_diffs_enabled'] = true
 # gitlab_rails['external_diffs_when'] = nil
-# gitlab_rails['external_diffs_storage_path'] = "/var/opt/gitlab/gitlab-rails/shared/external-diffs"
+gitlab_rails['external_diffs_storage_path'] = "/var/opt/gitlab/gitlab-rails/shared/external-diffs"
 # gitlab_rails['external_diffs_object_store_enabled'] = false
 # gitlab_rails['external_diffs_object_store_proxy_download'] = false
 # gitlab_rails['external_diffs_object_store_remote_directory'] = "external-diffs"
@@ -454,8 +454,8 @@ gitlab_rails['lfs_storage_path'] = "/var/opt/gitlab/gitlab-rails/shared/lfs-obje
 
 ### GitLab uploads
 ###! Docs: https://docs.gitlab.com/ee/administration/uploads.html
-# gitlab_rails['uploads_directory'] = "/var/opt/gitlab/gitlab-rails/uploads"
-# gitlab_rails['uploads_storage_path'] = "/opt/gitlab/embedded/service/gitlab-rails/public"
+gitlab_rails['uploads_directory'] = "/var/opt/gitlab/gitlab-rails/uploads"
+gitlab_rails['uploads_storage_path'] = "/opt/gitlab/embedded/service/gitlab-rails/public"
 # gitlab_rails['uploads_base_dir'] = "uploads/-/system"
 # gitlab_rails['uploads_object_store_enabled'] = false
 # gitlab_rails['uploads_object_store_proxy_download'] = false
@@ -474,8 +474,8 @@ gitlab_rails['lfs_storage_path'] = "/var/opt/gitlab/gitlab-rails/shared/lfs-obje
 
 ### Terraform state
 ###! Docs: https://docs.gitlab.com/ee/administration/terraform_state
-# gitlab_rails['terraform_state_enabled'] = true
-# gitlab_rails['terraform_state_storage_path'] = "/var/opt/gitlab/gitlab-rails/shared/terraform_state"
+gitlab_rails['terraform_state_enabled'] = true
+gitlab_rails['terraform_state_storage_path'] = "/var/opt/gitlab/gitlab-rails/shared/terraform_state"
 # gitlab_rails['terraform_state_object_store_enabled'] = false
 # gitlab_rails['terraform_state_object_store_remote_directory'] = "terraform"
 # gitlab_rails['terraform_state_object_store_connection'] = {
@@ -491,8 +491,8 @@ gitlab_rails['lfs_storage_path'] = "/var/opt/gitlab/gitlab-rails/shared/lfs-obje
 # }
 
 ### CI Secure Files
-# gitlab_rails['ci_secure_files_enabled'] = true
-# gitlab_rails['ci_secure_files_storage_path'] = "/var/opt/gitlab/gitlab-rails/shared/ci_secure_files"
+gitlab_rails['ci_secure_files_enabled'] = true
+gitlab_rails['ci_secure_files_storage_path'] = "/var/opt/gitlab/gitlab-rails/shared/ci_secure_files"
 # gitlab_rails['ci_secure_files_object_store_enabled'] = false
 # gitlab_rails['ci_secure_files_object_store_remote_directory'] = "ci-secure-files"
 # gitlab_rails['ci_secure_files_object_store_connection'] = {
@@ -1190,7 +1190,7 @@ gitlab_rails['registry_path'] = "/var/opt/gitlab/gitlab-rails/shared/registry"
 ##! Docs: https://gitlab.com/gitlab-org/gitlab/-/blob/master/workhorse/README.md
 ################################################################################
 
-# gitlab_workhorse['enable'] = true
+gitlab_workhorse['enable'] = false
 # gitlab_workhorse['ha'] = false
 # gitlab_workhorse['alt_document_root'] = nil
 
@@ -2232,7 +2232,7 @@ logging['svlogd_filter'] = "gzip"
 
 ##! Settings for GitLab KAS
 # gitlab_kas_external_url "ws://gitlab.example.com/-/kubernetes-agent/"
-# gitlab_kas['enable'] = true
+gitlab_kas['enable'] = false
 
 ##! Agent configuration for GitLab KAS
 # gitlab_kas['agent_configuration_poll_period'] = 300
@@ -2425,7 +2425,7 @@ logging['svlogd_filter'] = "gzip"
 
 ###! **To enable only Monitoring service in this machine, uncomment
 ###!   the line below.**
-# monitoring_role['enable'] = true
+monitoring_role['enable'] = false
 
 # prometheus['enable'] = true
 # prometheus['monitor_kubernetes'] = true
@@ -2506,7 +2506,7 @@ logging['svlogd_filter'] = "gzip"
 ## Prometheus Alertmanager
 ################################################################################
 
-# alertmanager['enable'] = true
+alertmanager['enable'] = false
 # alertmanager['home'] = '/var/opt/gitlab/alertmanager'
 # alertmanager['log_directory'] = '/var/log/gitlab/alertmanager'
 # alertmanager['log_group'] = nil
@@ -2531,7 +2531,7 @@ logging['svlogd_filter'] = "gzip"
 ##! Docs: https://docs.gitlab.com/ee/administration/monitoring/prometheus/node_exporter.html
 ################################################################################
 
-# node_exporter['enable'] = true
+node_exporter['enable'] = false
 # node_exporter['home'] = '/var/opt/gitlab/node-exporter'
 # node_exporter['log_directory'] = '/var/log/gitlab/node-exporter'
 # node_exporter['log_group'] = nil
@@ -2557,7 +2557,7 @@ logging['svlogd_filter'] = "gzip"
 ##! Docs: https://docs.gitlab.com/ee/administration/monitoring/prometheus/redis_exporter.html
 ################################################################################
 
-# redis_exporter['enable'] = true
+redis_exporter['enable'] = false
 # redis_exporter['log_directory'] = '/var/log/gitlab/redis-exporter'
 # redis_exporter['log_group'] = nil
 # redis_exporter['flags'] = {
@@ -2582,7 +2582,7 @@ logging['svlogd_filter'] = "gzip"
 ##! Docs: https://docs.gitlab.com/ee/administration/monitoring/prometheus/postgres_exporter.html
 ################################################################################
 
-# postgres_exporter['enable'] = true
+postgres_exporter['enable'] = false
 # postgres_exporter['home'] = '/var/opt/gitlab/postgres-exporter'
 # postgres_exporter['log_directory'] = '/var/log/gitlab/postgres-exporter'
 # postgres_exporter['log_group'] = nil
@@ -2608,7 +2608,7 @@ logging['svlogd_filter'] = "gzip"
 ##! Docs: https://docs.gitlab.com/ee/administration/monitoring/prometheus/pgbouncer_exporter.html
 ################################################################################
 
-# pgbouncer_exporter['enable'] = false
+pgbouncer_exporter['enable'] = false
 # pgbouncer_exporter['log_directory'] = "/var/log/gitlab/pgbouncer-exporter"
 # pgbouncer_exporter['log_group'] = nil
 # pgbouncer_exporter['listen_address'] = 'localhost:9188'
@@ -2623,7 +2623,7 @@ logging['svlogd_filter'] = "gzip"
 ##! Docs: https://docs.gitlab.com/ee/administration/monitoring/prometheus/gitlab_exporter.html
 ################################################################################
 
-# gitlab_exporter['enable'] = true
+gitlab_exporter['enable'] = false
 # gitlab_exporter['log_directory'] = "/var/log/gitlab/gitlab-exporter"
 # gitlab_exporter['log_group'] = nil
 # gitlab_exporter['home'] = "/var/opt/gitlab/gitlab-exporter"
@@ -2671,7 +2671,7 @@ prometheus_monitoring['enable'] = false
 
 ##! The gitaly['enable'] option exists for the purpose of cluster
 ##! deployments, see https://docs.gitlab.com/ee/administration/gitaly/index.html .
-# gitaly['enable'] = true
+gitaly['enable'] = false
 # gitaly['dir'] = "/var/opt/gitlab/gitaly"
 # gitaly['log_group'] = nil
 # gitaly['bin_path'] = "/opt/gitlab/embedded/bin/gitaly"
@@ -2802,7 +2802,7 @@ prometheus_monitoring['enable'] = false
 ##! Docs: https://docs.gitlab.com/ee/administration/gitaly/praefect.html
 ################################################################################
 
-# praefect['enable'] = false
+praefect['enable'] = false
 # praefect['dir'] = "/var/opt/gitlab/praefect"
 # praefect['log_directory'] = "/var/log/gitlab/praefect"
 # praefect['log_group'] = nil
@@ -3199,7 +3199,7 @@ gitlab_rails['dependency_proxy_storage_path'] = "/var/opt/gitlab/gitlab-rails/sh
 ## GitLab Geo Secondary Tracking Database (EE only)
 ################################################################################
 
-# geo_postgresql['enable'] = false
+geo_postgresql['enable'] = false
 # geo_postgresql['ha'] = false
 # geo_postgresql['dir'] = '/var/opt/gitlab/geo-postgresql'
 # geo_postgresql['pgbouncer_user'] = nil
@@ -3215,7 +3215,7 @@ gitlab_rails['dependency_proxy_storage_path'] = "/var/opt/gitlab/gitlab-rails/sh
 ## GitLab Geo Log Cursor Daemon (EE only)
 ################################################################################
 
-# geo_logcursor['enable'] = false
+geo_logcursor['enable'] = false
 # geo_logcursor['log_directory'] = '/var/log/gitlab/geo-logcursor'
 # geo_logcursor['log_group'] = nil
 
@@ -3452,7 +3452,7 @@ patroni['enable'] = false
 ################################################################################
 ## Consul (EE only)
 ################################################################################
-# consul['enable'] = false
+consul['enable'] = false
 # consul['binary_path'] = '/opt/gitlab/embedded/bin/consul'
 # consul['dir'] = '/var/opt/gitlab/consul'
 # consul['username'] = 'gitlab-consul'
@@ -3572,7 +3572,7 @@ patroni['enable'] = false
 ## Spamcheck (EE only)
 #################################################################################
 
-# spamcheck['enable'] = false
+spamcheck['enable'] = false
 # spamcheck['dir'] = '/var/opt/gitlab/spamcheck'
 # spamcheck['port'] = 8001
 # spamcheck['external_port'] = nil
@@ -3602,7 +3602,7 @@ patroni['enable'] = false
 #################################################################################
 ## gitlab-backup-cli settings
 #################################################################################
-# gitlab_backup_cli['enable'] = false
+gitlab_backup_cli['enable'] = false
 # gitlab_backup_cli['user'] = 'gitlab-backup'
 # gitlab_backup_cli['group'] = 'gitlab-backup'
 # gitlab_backup_cli['dir'] = '/var/opt/gitlab/backups'
