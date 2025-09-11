@@ -1796,9 +1796,9 @@ redis['enable'] = false
 ##! Docs: https://docs.gitlab.com/omnibus/settings/nginx.html
 ################################################################################
 
-# nginx['enable'] = true
+nginx['enable'] = true
 # nginx['client_max_body_size'] = '0'
-nginx['redirect_http_to_https'] = false
+# nginx['redirect_http_to_https'] = false
 # nginx['redirect_http_to_https_port'] = 80
 
 ##! Most root CA's are included by default
