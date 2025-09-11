@@ -1053,7 +1053,7 @@ gitlab_rails['registry_path'] = "/var/opt/gitlab/gitlab-rails/shared/registry"
 #   'SSL_CERT_DIR' => "/opt/gitlab/embedded/ssl/certs/",
 #   'GODEBUG' => "tlsmlkem=0",
 # }
-# registry['log_level'] = "info"
+registry['log_level'] = "error"
 # registry['log_formatter'] = "text"
 # registry['rootcertbundle'] = "/var/opt/gitlab/registry/certificate.crt"
 # registry['health_storagedriver_enabled'] = true
@@ -1250,7 +1250,7 @@ gitlab_workhorse['enable'] = true
 # gitlab_workhorse['trusted_cidrs_for_x_forwarded_for'] = nil
 
 ##! Log format: default is json, can also be text or none.
-# gitlab_workhorse['log_format'] = "json"
+gitlab_workhorse['log_format'] = "json"
 
 # gitlab_workhorse['env_directory'] = "/opt/gitlab/etc/gitlab-workhorse/env"
 # gitlab_workhorse['env'] = {
@@ -1430,7 +1430,7 @@ sidekiq['concurrency'] = 10
 ################################################################################
 
 # gitlab_shell['audit_usernames'] = false
-# gitlab_shell['log_level'] = 'INFO'
+gitlab_shell['log_level'] = 'error'
 # gitlab_shell['log_format'] = 'json'
 # gitlab_shell['http_settings'] = { user: 'username', password: 'password', ca_file: '/etc/ssl/cert.pem', ca_path: '/etc/pki/tls/certs'}
 # gitlab_shell['log_directory'] = "/var/log/gitlab/gitlab-shell"
@@ -1854,12 +1854,12 @@ nginx['enable'] = true
 ##! Docs: https://docs.gitlab.com/omnibus/settings/nginx.html#configuring-the-proxy-protocol
 # nginx['proxy_protocol'] = false
 
-nginx['custom_gitlab_server_config'] = "
-  location ~ ^/(assets|uploads|avatars)/ {
-    expires 1y;
-    add_header Cache-Control public;
-  }
-"
+# nginx['custom_gitlab_server_config'] = "
+#   location ~ ^/(assets|uploads|avatars)/ {
+#     expires 1y;
+#     add_header Cache-Control public;
+#   }
+# "
 # nginx['custom_nginx_config'] = "include /etc/nginx/conf.d/example.conf;"
 # nginx['proxy_read_timeout'] = 3600
 # nginx['proxy_connect_timeout'] = 300
@@ -1889,7 +1889,7 @@ nginx['custom_gitlab_server_config'] = "
 # nginx['dir'] = "/var/opt/gitlab/nginx"
 # nginx['log_directory'] = "/var/log/gitlab/nginx"
 # nginx['log_group'] = nil
-# nginx['error_log_level'] = "error"
+nginx['error_log_level'] = "error"
 # nginx['worker_processes'] = 4
 # nginx['worker_connections'] = 10240
 # nginx['log_format'] = '$remote_addr - $remote_user [$time_local] "$request_method $filtered_request_uri $server_protocol" $status $body_bytes_sent "$filtered_http_referer" "$http_user_agent" $gzip_ratio'
@@ -1943,7 +1943,7 @@ logging['svlogd_num'] = 10
 # logging['svlogd_filter'] = "gzip" # compress logs with gzip
 # logging['svlogd_udp'] = nil # transmit log messages via UDP
 # logging['svlogd_prefix'] = nil # custom prefix for log messages
-# logging['logrotate_frequency'] = "daily" # rotate logs daily
+logging['logrotate_frequency'] = "daily" # rotate logs daily
 # logging['logrotate_maxsize'] = nil # rotate logs when they grow bigger than size bytes even before the specified time interval (daily, weekly, monthly, or yearly)
 # logging['logrotate_size'] = nil # do not rotate by size by default
 # logging['logrotate_rotate'] = 30 # keep 30 rotated logs
@@ -1951,13 +1951,13 @@ logging['svlogd_num'] = 10
 # logging['logrotate_method'] = "copytruncate" # see 'man logrotate'
 # logging['logrotate_postrotate'] = nil # no postrotate command by default
 # logging['logrotate_dateformat'] = nil # use date extensions for rotated files rather than numbers e.g. a value of "-%Y-%m-%d" would give rotated files like production.log-2016-03-09.gz
-#logging['log_group'] = 'warn' # assign this group to specified log directories and use it for runit-managed logs, can be overridden per-service
+logging['log_group'] = 'error' # assign this group to specified log directories and use it for runit-managed logs, can be overridden per-service
 
 ### UDP log forwarding
 ##! Docs: http://docs.gitlab.com/omnibus/settings/logs.html#udp-log-forwarding
 
 ##! remote host to ship log messages to via UDP
-# logging['udp_log_shipping_host'] = nil
+logging['udp_log_shipping_host'] = nil
 
 ##! override the hostname used when logs are shipped via UDP,
 ##!  by default the system hostname will be used.
@@ -2272,8 +2272,8 @@ gitlab_kas['enable'] = false
 # gitlab_kas['metrics_usage_reporting_period'] = 60
 
 ##! Log configuration for GitLab KAS
-# gitlab_kas['log_level'] = 'info'
-# gitlab_kas['grpc_log_level'] = 'error'
+gitlab_kas['log_level'] = 'error'
+gitlab_kas['grpc_log_level'] = 'error'
 
 ##! Environment variables for GitLab KAS
 # gitlab_kas['env'] = {
@@ -3381,7 +3381,7 @@ patroni['enable'] = false
 ### Log settings
 # patroni['log_directory'] = '/var/log/gitlab/patroni'
 # patroni['log_group'] = nil
-# patroni['log_level'] = 'INFO'
+patroni['log_level'] = 'error'
 
 ### Consul specific settings
 # patroni['consul']['url'] = 'http://127.0.0.1:8500'
@@ -3577,7 +3577,7 @@ consul['enable'] = false
 # spamcheck['port'] = 8001
 # spamcheck['external_port'] = nil
 # spamcheck['monitoring_address'] = ':8003'
-# spamcheck['log_level'] = 'info'
+spamcheck['log_level'] = 'error'
 # spamcheck['log_format'] = 'json'
 # spamcheck['log_output'] = 'stdout'
 # spamcheck['monitor_mode'] = false
