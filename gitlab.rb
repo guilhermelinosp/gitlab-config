@@ -1338,7 +1338,7 @@ puma['max_threads'] = 2
 ### Advanced settings
 # puma['listen'] = '127.0.0.1'
 # puma['port'] = 8080
-# puma['socket'] = '/var/opt/gitlab/gitlab-rails/sockets/gitlab.socket'
+puma['socket'] = '/var/opt/gitlab/gitlab-rails/sockets/gitlab.socket'
 # puma['somaxconn'] = 2048
 
 ### SSL settings
@@ -2404,7 +2404,7 @@ gitlab_kas['enable'] = false
 ##! `registry_nginx['some_setting']` and should be set separately.
 
 ##! Below you can find settings that are exclusive to "Registry NGINX"
-# registry_nginx['enable'] = false
+registry_nginx['enable'] = true
 
 # registry_nginx['proxy_set_headers'] = {
 #  "Host" => "$http_host",
@@ -2416,7 +2416,7 @@ gitlab_kas['enable'] = false
 
 ##! When the registry is automatically enabled using the same domain as `external_url`,
 ##! it listens on this port
-# registry_nginx['listen_port'] = 5050
+registry_nginx['listen_port'] = 5050
 
 ################################################################################
 ## Prometheus
@@ -2671,7 +2671,7 @@ prometheus_monitoring['enable'] = false
 
 ##! The gitaly['enable'] option exists for the purpose of cluster
 ##! deployments, see https://docs.gitlab.com/ee/administration/gitaly/index.html .
-gitaly['enable'] = false
+gitaly['enable'] = true
 # gitaly['dir'] = "/var/opt/gitlab/gitaly"
 # gitaly['log_group'] = nil
 # gitaly['bin_path'] = "/opt/gitlab/embedded/bin/gitaly"
@@ -2914,8 +2914,8 @@ praefect['enable'] = false
 ################################################################################
 ## Storage check
 ################################################################################
-# storage_check['enable'] = false
-# storage_check['target'] = 'unix:///var/opt/gitlab/gitlab-rails/sockets/gitlab.socket'
+storage_check['enable'] = true
+storage_check['target'] = 'unix:///var/opt/gitlab/gitlab-rails/sockets/gitlab.socket'
 # storage_check['log_directory'] = '/var/log/gitlab/storage-check'
 # storage_check['log_group'] = nil
 
