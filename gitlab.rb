@@ -1191,6 +1191,7 @@ registry['log_level'] = "error"
 ################################################################################
 
 gitlab_workhorse['enable'] = true
+gitlab_workhorse['log_level'] = 'error'
 # gitlab_workhorse['ha'] = false
 # gitlab_workhorse['alt_document_root'] = nil
 
@@ -1328,12 +1329,13 @@ gitlab_workhorse['log_format'] = "json"
 ##! Docs: https://docs.gitlab.com/ee/administration/operations/puma.html
 ################################################################################
 
-# puma['enable'] = false
+puma['enable'] = true
 # puma['ha'] = false
 # puma['worker_timeout'] = 60
-# puma['worker_processes'] = 2
-# puma['min_threads'] = 1
-# puma['max_threads'] = 2
+puma['worker_processes'] = 1
+puma['min_threads'] = 1
+puma['max_threads'] = 2
+puma['log_level'] = 'error'
 
 ### Advanced settings
 # puma['listen'] = '127.0.0.1'
@@ -1391,7 +1393,8 @@ sidekiq['enable'] = true
 # sidekiq['log_format'] = "json"
 # sidekiq['shutdown_timeout'] = 4
 # sidekiq['interval'] = nil
-sidekiq['concurrency'] = 10
+sidekiq['concurrency'] = 5
+sidekiq['log_level'] = 'error'
 
 ##! GitLab allows route a job to a particular queue determined by an array of ##! routing rules.
 ##! Each routing rule is a tuple of queue selector query and corresponding queue. By default,
@@ -1933,8 +1936,8 @@ nginx['error_log_level'] = "error"
 ##! Docs: https://docs.gitlab.com/omnibus/settings/logs.html
 ################################################################################
 
-# logging['svlogd_size'] = 100 * 1024 * 1024
-# logging['svlogd_num'] = 10
+logging['svlogd_size'] = 10 * 1024 * 1024
+logging['svlogd_num'] = 3
 # logging['svlogd_timeout'] = 24 * 60 * 60
 # logging['svlogd_filter'] = "gzip"
 # logging['svlogd_size'] = 200 * 1024 * 1024 # rotate after 200 MB of log data
@@ -1951,7 +1954,7 @@ logging['logrotate_frequency'] = "daily" # rotate logs daily
 # logging['logrotate_method'] = "copytruncate" # see 'man logrotate'
 # logging['logrotate_postrotate'] = nil # no postrotate command by default
 # logging['logrotate_dateformat'] = nil # use date extensions for rotated files rather than numbers e.g. a value of "-%Y-%m-%d" would give rotated files like production.log-2016-03-09.gz
-logging['log_group'] = 'error' # assign this group to specified log directories and use it for runit-managed logs, can be overridden per-service
+logging['log_group'] = nil  # Removido 'error' pois não é um grupo válido
 
 ### UDP log forwarding
 ##! Docs: http://docs.gitlab.com/omnibus/settings/logs.html#udp-log-forwarding
@@ -2672,6 +2675,7 @@ prometheus_monitoring['enable'] = false
 ##! The gitaly['enable'] option exists for the purpose of cluster
 ##! deployments, see https://docs.gitlab.com/ee/administration/gitaly/index.html .
 gitaly['enable'] = true
+gitaly['log_level'] = 'error'
 # gitaly['dir'] = "/var/opt/gitlab/gitaly"
 # gitaly['log_group'] = nil
 # gitaly['bin_path'] = "/opt/gitlab/embedded/bin/gitaly"
