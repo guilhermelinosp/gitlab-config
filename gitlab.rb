@@ -152,7 +152,7 @@ gitlab_rails['gitlab_default_theme'] = 2
 ##! `1`  for Light mode
 ##! `2`  for Dark mode
 ##! `3`  for Auto (follow system preferences)
-# gitlab_rails['gitlab_default_color_mode'] = 1
+gitlab_rails['gitlab_default_color_mode'] = 1
 
 ### Custom html header tags
 ###! See https://docs.gitlab.com/ee/administration/custom_html_header_tags.html for more
@@ -1018,11 +1018,11 @@ gitlab_rails['redis_port'] = 6379
 ##! Docs: https://docs.gitlab.com/ee/administration/packages/container_registry.html
 ################################################################################
 
-registry_external_url 'https://registry.etherlab.com.br'
+registry_external_url 'http://registry.etherlab.com.br'
 
 ### Settings used by GitLab application
 gitlab_rails['registry_enabled'] = true
-gitlab_rails['registry_host'] = "registry.gitlab.etherlab.com.br"
+gitlab_rails['registry_host'] = "registry.etherlab.com.br"
 gitlab_rails['registry_port'] = "5005"
 gitlab_rails['registry_path'] = "/var/opt/gitlab/gitlab-rails/shared/registry"
 
@@ -1361,7 +1361,7 @@ gitlab_workhorse['enable'] = false
 ###! Docs: https://github.com/schneems/puma_worker_killer
 # puma['per_worker_max_memory_mb'] = 1024
 
-# puma['exporter_enabled'] = false
+puma['exporter_enabled'] = false
 # puma['exporter_address'] = "127.0.0.1"
 # puma['exporter_port'] = 8083
 # puma['exporter_tls_enabled'] = false
