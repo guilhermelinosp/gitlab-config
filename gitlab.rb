@@ -1804,6 +1804,11 @@ nginx['enable'] = true
 nginx['redirect_http_to_https'] = false
 # nginx['redirect_http_to_https_port'] = 80
 
+nginx['listen_addresses'] = ["0.0.0.0", "[::]"]
+registry_nginx['listen_addresses'] = ['*', '[::]']
+mattermost_nginx['listen_addresses'] = ['*', '[::]']
+pages_nginx['listen_addresses'] = ['*', '[::]']
+
 ##! Most root CA's are included by default
 # nginx['ssl_client_certificate'] = "/etc/gitlab/ssl/ca.crt"
 
@@ -1832,7 +1837,6 @@ nginx['redirect_http_to_https'] = false
 
 # nginx['ssl_dhparam'] = nil # Path to dhparams.pem, eg. /etc/gitlab/ssl/dhparams.pem
 # nginx['ssl_password_file'] = nil # Path to file with passphrases for ssl certificate secret keys
-nginx['listen_addresses'] = ['*']
 
 ##! **Defaults to forcing web browsers to always communicate using only HTTPS**
 ##! Docs: https://docs.gitlab.com/omnibus/settings/ssl/#configure-the-http-strict-transport-security-hsts
