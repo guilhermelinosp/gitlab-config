@@ -1832,7 +1832,7 @@ nginx['redirect_http_to_https'] = false
 
 # nginx['ssl_dhparam'] = nil # Path to dhparams.pem, eg. /etc/gitlab/ssl/dhparams.pem
 # nginx['ssl_password_file'] = nil # Path to file with passphrases for ssl certificate secret keys
-# nginx['listen_addresses'] = ['*']
+nginx['listen_addresses'] = ['*']
 
 ##! **Defaults to forcing web browsers to always communicate using only HTTPS**
 ##! Docs: https://docs.gitlab.com/omnibus/settings/ssl/#configure-the-http-strict-transport-security-hsts
@@ -1847,11 +1847,11 @@ nginx['redirect_http_to_https'] = false
 
 ##! **Override only if you use a reverse proxy**
 ##! Docs: https://docs.gitlab.com/omnibus/settings/nginx.html#setting-the-nginx-listen-port
-# nginx['listen_port'] = nil
+nginx['listen_port'] = 80
 
 ##! **Override only if your reverse proxy internally communicates over HTTP**
 ##! Docs: https://docs.gitlab.com/omnibus/settings/ssl/#configure-a-reverse-proxy-or-load-balancer-ssl-termination
-# nginx['listen_https'] = nil
+nginx['listen_https'] = false
 
 ##! **Override only if you use a reverse proxy with proxy protocol enabled**
 ##! Docs: https://docs.gitlab.com/omnibus/settings/nginx.html#configuring-the-proxy-protocol
