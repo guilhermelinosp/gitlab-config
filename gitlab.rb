@@ -1045,7 +1045,7 @@ registry['enable'] = true
 # registry['gid'] = nil
 registry['dir'] = "/var/opt/gitlab/registry"
 # registry['shell'] = "/usr/sbin/nologin"
-registry['registry_http_addr'] = "127.0.0.1:5000"
+#registry['registry_http_addr'] = "127.0.0.1:5000"
 # registry['debug_addr'] = "localhost:5001"
 registry['log_directory'] = "/var/log/gitlab/registry"
 registry['env_directory'] = "/opt/gitlab/etc/registry/env"
@@ -2423,7 +2423,7 @@ registry_nginx['enable'] = true
 
 ##! When the registry is automatically enabled using the same domain as `external_url`,
 ##! it listens on this port
-registry_nginx['listen_port'] = 5050
+registry_nginx['listen_port'] = 5005
 
 ################################################################################
 ## Prometheus
