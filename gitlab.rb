@@ -1801,7 +1801,7 @@ redis['enable'] = false
 
 nginx['enable'] = true
 # nginx['client_max_body_size'] = '0'
-# nginx['redirect_http_to_https'] = false
+nginx['redirect_http_to_https'] = false
 # nginx['redirect_http_to_https_port'] = 80
 
 ##! Most root CA's are included by default
@@ -3016,7 +3016,7 @@ package['modify_kernel_parameters'] = false
 
 gitlab_rails['packages_enabled'] = true
 gitlab_rails['packages_storage_path'] = "/var/opt/gitlab/gitlab-rails/shared/packages"
-# gitlab_rails['packages_object_store_enabled'] = false
+gitlab_rails['packages_object_store_enabled'] = false
 # gitlab_rails['packages_object_store_proxy_download'] = false
 # gitlab_rails['packages_object_store_remote_directory'] = "packages"
 # gitlab_rails['packages_object_store_connection'] = {
