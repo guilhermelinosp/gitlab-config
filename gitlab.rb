@@ -663,7 +663,7 @@ gitlab_rails['usage_ping_enabled'] = false
 ### Backup Settings
 ###! Docs: https://docs.gitlab.com/omnibus/settings/backups.html
 
-gitlab_rails['manage_backup_path'] = true
+gitlab_rails['manage_backup_path'] = false
 # gitlab_rails['backup_path'] = "/var/opt/gitlab/backups"
 # gitlab_rails['backup_gitaly_backup_path'] = "/opt/gitlab/embedded/bin/gitaly-backup"
 
@@ -673,7 +673,7 @@ gitlab_rails['backup_archive_permissions'] = 0644
 # gitlab_rails['backup_pg_schema'] = 'public'
 
 ###! The duration in seconds to keep backups before they are allowed to be deleted
-gitlab_rails['backup_keep_time'] = 604800
+gitlab_rails['backup_keep_time'] = 0
 
 # gitlab_rails['backup_upload_connection'] = {
 #   'provider' => 'AWS',
@@ -1332,9 +1332,9 @@ gitlab_workhorse['log_format'] = "json"
 puma['enable'] = true
 # puma['ha'] = false
 # puma['worker_timeout'] = 60
-puma['worker_processes'] = 1
-puma['min_threads'] = 1
-puma['max_threads'] = 2
+puma['worker_processes'] = 2
+puma['min_threads'] = 2
+puma['max_threads'] = 4
 puma['log_level'] = 'error'
 
 ### Advanced settings
@@ -1393,7 +1393,7 @@ sidekiq['enable'] = true
 # sidekiq['log_format'] = "json"
 # sidekiq['shutdown_timeout'] = 4
 # sidekiq['interval'] = nil
-sidekiq['concurrency'] = 5
+sidekiq['concurrency'] = 10
 sidekiq['log_level'] = 'error'
 
 ##! GitLab allows route a job to a particular queue determined by an array of ##! routing rules.
@@ -1847,7 +1847,7 @@ pages_nginx['listen_addresses'] = ['*', '[::]']
 # nginx['referrer_policy'] = 'strict-origin-when-cross-origin'
 
 ##! **Docs: http://nginx.org/en/docs/http/ngx_http_gzip_module.html**
-# nginx['gzip_enabled'] = true
+nginx['gzip_enabled'] = true
 
 ##! **Override only if you use a reverse proxy**
 ##! Docs: https://docs.gitlab.com/omnibus/settings/nginx.html#setting-the-nginx-listen-port
@@ -1897,17 +1897,17 @@ nginx['listen_https'] = false
 # nginx['log_directory'] = "/var/log/gitlab/nginx"
 # nginx['log_group'] = nil
 nginx['error_log_level'] = "error"
-# nginx['worker_processes'] = 4
-# nginx['worker_connections'] = 10240
+nginx['worker_processes'] = 4
+nginx['worker_connections'] = 2048
 # nginx['log_format'] = '$remote_addr - $remote_user [$time_local] "$request_method $filtered_request_uri $server_protocol" $status $body_bytes_sent "$filtered_http_referer" "$http_user_agent" $gzip_ratio'
 # nginx['sendfile'] = 'on'
 # nginx['tcp_nopush'] = 'on'
 # nginx['tcp_nodelay'] = 'on'
 # nginx['hide_server_tokens'] = 'off'
 # nginx['gzip_http_version'] = "1.0"
-# nginx['gzip_comp_level'] = "2"
-# nginx['gzip_proxied'] = "any"
-# nginx['gzip_types'] = [ "text/plain", "text/css", "application/x-javascript", "text/xml", "application/xml", "application/xml+rss", "text/javascript", "application/json" ]
+nginx['gzip_comp_level'] = "2"
+nginx['gzip_proxied'] = "any"
+nginx['gzip_types'] = [ "text/plain", "text/css", "application/x-javascript", "text/xml", "application/xml", "application/xml+rss", "text/javascript", "application/json" ]
 # nginx['keepalive_timeout'] = 65
 # nginx['keepalive_time'] = '1h'
 # nginx['cache_max_size'] = '5000m'
@@ -1953,7 +1953,7 @@ logging['svlogd_num'] = 3
 logging['logrotate_frequency'] = "daily" # rotate logs daily
 # logging['logrotate_maxsize'] = nil # rotate logs when they grow bigger than size bytes even before the specified time interval (daily, weekly, monthly, or yearly)
 # logging['logrotate_size'] = nil # do not rotate by size by default
-# logging['logrotate_rotate'] = 30 # keep 30 rotated logs
+logging['logrotate_rotate'] = 7 # keep 30 rotated logs
 # logging['logrotate_compress'] = "compress" # see 'man logrotate'
 # logging['logrotate_method'] = "copytruncate" # see 'man logrotate'
 # logging['logrotate_postrotate'] = nil # no postrotate command by default
@@ -2016,7 +2016,7 @@ manage_accounts['enable'] = false
 
 ##! Define to enable GitLab Pages
 # pages_external_url "http://pages.example.com/"
-# gitlab_pages['enable'] = false
+gitlab_pages['enable'] = false
 
 ##! Configure to expose GitLab Pages on external IP address, serving the HTTP
 # gitlab_pages['external_http'] = []
@@ -2343,7 +2343,7 @@ gitlab_kas['grpc_log_level'] = 'error'
 
 # mattermost_external_url 'http://mattermost.example.com'
 
-# mattermost['enable'] = false
+mattermost['enable'] = false
 # mattermost['username'] = 'mattermost'
 # mattermost['group'] = 'mattermost'
 # mattermost['uid'] = nil
