@@ -2918,8 +2918,8 @@ praefect['enable'] = false
 ################################################################################
 ## Storage check
 ################################################################################
-storage_check['enable'] = true
-storage_check['target'] = 'unix:///var/opt/gitlab/gitlab-rails/sockets/gitlab.socket'
+#storage_check['enable'] = false
+#storage_check['target'] = 'unix:///var/opt/gitlab/gitlab-rails/sockets/gitlab.socket'
 # storage_check['log_directory'] = '/var/log/gitlab/storage-check'
 # storage_check['log_group'] = nil
 
