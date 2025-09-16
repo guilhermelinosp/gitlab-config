@@ -1018,7 +1018,7 @@ gitlab_rails['redis_port'] = 6379
 ##! Docs: https://docs.gitlab.com/ee/administration/packages/container_registry.html
 ################################################################################
 
-#registry_external_url 'http://registry.etherlab.com.br'
+registry_external_url 'http://192.168.1.123:5005'
 
 ### Settings used by GitLab application
 gitlab_rails['registry_enabled'] = true
@@ -1038,17 +1038,17 @@ gitlab_rails['registry_path'] = "/var/opt/gitlab/gitlab-rails/shared/registry"
 # gitlab_rails['registry_issuer'] = "omnibus-gitlab-issuer"
 
 ### Settings used by Registry application
-# registry['enable'] = true
+registry['enable'] = true
 # registry['username'] = "registry"
 # registry['group'] = "registry"
 # registry['uid'] = nil
 # registry['gid'] = nil
-# registry['dir'] = "/var/opt/gitlab/registry"
+registry['dir'] = "/var/opt/gitlab/registry"
 # registry['shell'] = "/usr/sbin/nologin"
-# registry['registry_http_addr'] = "127.0.0.1:5000"
+registry['registry_http_addr'] = "127.0.0.1:5000"
 # registry['debug_addr'] = "localhost:5001"
-# registry['log_directory'] = "/var/log/gitlab/registry"
-# registry['env_directory'] = "/opt/gitlab/etc/registry/env"
+registry['log_directory'] = "/var/log/gitlab/registry"
+registry['env_directory'] = "/opt/gitlab/etc/registry/env"
 # registry['env'] = {
 #   'SSL_CERT_DIR' => "/opt/gitlab/embedded/ssl/certs/",
 #   'GODEBUG' => "tlsmlkem=0",
