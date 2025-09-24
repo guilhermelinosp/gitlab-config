@@ -29,7 +29,7 @@
 ##! On AWS EC2 instances, we also attempt to fetch the public hostname/IP
 ##! address from AWS. For more details, see:
 ##! https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instancedata-data-retrieval.html
-external_url 'http://192.168.1.123'
+external_url 'http://10.0.3.73'
 
 ## Roles for multi-instance GitLab
 ##! The default is to have no roles enabled, which results in GitLab running as an all-in-one instance.
@@ -800,10 +800,10 @@ gitlab_rails['backup_keep_time'] = 0
 gitlab_rails['db_adapter'] = "postgresql"
 gitlab_rails['db_encoding'] = "unicode"
 #gitlab_rails['db_collation'] = nil
-gitlab_rails['db_database'] = "gitlabhq_production"
-gitlab_rails['db_username'] = "postgres"
-gitlab_rails['db_password'] = "postgres"
-gitlab_rails['db_host'] = "192.168.1.119"
+gitlab_rails['db_database'] = "gitlab"
+gitlab_rails['db_username'] = "gitlab"
+gitlab_rails['db_password'] = "gitlab"
+gitlab_rails['db_host'] = "10.0.3.152"
 gitlab_rails['db_port'] = 5432
 # gitlab_rails['db_socket'] = nil
 # gitlab_rails['db_sslmode'] = nil
@@ -845,7 +845,7 @@ gitlab_rails['db_port'] = 5432
 ###! Docs: https://docs.gitlab.com/omnibus/settings/redis.html
 
 #### Redis TCP connection
-gitlab_rails['redis_host'] = "192.168.1.120"
+gitlab_rails['redis_host'] = "10.0.3.4"
 gitlab_rails['redis_port'] = 6379
 # gitlab_rails['redis_ssl'] = false
 # gitlab_rails['redis_password'] = nil
@@ -1018,11 +1018,11 @@ gitlab_rails['redis_port'] = 6379
 ##! Docs: https://docs.gitlab.com/ee/administration/packages/container_registry.html
 ################################################################################
 
-registry_external_url 'http://192.168.1.123:5005'
+registry_external_url 'http://10.0.3.73:5005'
 
 ### Settings used by GitLab application
 gitlab_rails['registry_enabled'] = true
-gitlab_rails['registry_host'] = "192.168.1.123"
+gitlab_rails['registry_host'] = "10.0.3.73"
 gitlab_rails['registry_port'] = "5005"
 gitlab_rails['registry_path'] = "/var/opt/gitlab/gitlab-rails/shared/registry"
 
