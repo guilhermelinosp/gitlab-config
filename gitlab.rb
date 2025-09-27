@@ -29,7 +29,7 @@
 ##! On AWS EC2 instances, we also attempt to fetch the public hostname/IP
 ##! address from AWS. For more details, see:
 ##! https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instancedata-data-retrieval.html
-external_url 'http://10.0.3.73'
+external_url 'http://10.0.3.117'
 
 ## Roles for multi-instance GitLab
 ##! The default is to have no roles enabled, which results in GitLab running as an all-in-one instance.
@@ -400,9 +400,9 @@ gitlab_rails['artifacts_enabled'] = true
 gitlab_rails['artifacts_path'] = "/var/opt/gitlab/gitlab-rails/shared/artifacts"
 ###! Job artifacts Object Store
 ###! Docs: https://docs.gitlab.com/ee/administration/job_artifacts.html#using-object-storage
-# gitlab_rails['artifacts_object_store_enabled'] = false
+# gitlab_rails['artifacts_object_store_enabled'] = true
 # gitlab_rails['artifacts_object_store_proxy_download'] = false
-# gitlab_rails['artifacts_object_store_remote_directory'] = "artifacts"
+# gitlab_rails['artifacts_object_store_remote_directory'] = "gitlab-artifacts"
 # gitlab_rails['artifacts_object_store_connection'] = {
 #   'provider' => 'AWS',
 #   'region' => 'eu-west-1',
@@ -418,7 +418,7 @@ gitlab_rails['artifacts_path'] = "/var/opt/gitlab/gitlab-rails/shared/artifacts"
 ### External merge request diffs
 gitlab_rails['external_diffs_enabled'] = false
 # gitlab_rails['external_diffs_when'] = nil
-# gitlab_rails['external_diffs_storage_path'] = "/var/opt/gitlab/gitlab-rails/shared/external-diffs"
+gitlab_rails['external_diffs_storage_path'] = "/var/opt/gitlab/gitlab-rails/shared/external-diffs"
 # gitlab_rails['external_diffs_object_store_enabled'] = false
 # gitlab_rails['external_diffs_object_store_proxy_download'] = false
 # gitlab_rails['external_diffs_object_store_remote_directory'] = "external-diffs"
@@ -436,7 +436,7 @@ gitlab_rails['external_diffs_enabled'] = false
 
 ### Git LFS
 gitlab_rails['lfs_enabled'] = false
-# gitlab_rails['lfs_storage_path'] = "/var/opt/gitlab/gitlab-rails/shared/lfs-objects"
+gitlab_rails['lfs_storage_path'] = "/var/opt/gitlab/gitlab-rails/shared/lfs-objects"
 # gitlab_rails['lfs_object_store_enabled'] = false
 # gitlab_rails['lfs_object_store_proxy_download'] = false
 # gitlab_rails['lfs_object_store_remote_directory'] = "lfs-objects"
@@ -475,7 +475,7 @@ gitlab_rails['uploads_storage_path'] = "/opt/gitlab/embedded/service/gitlab-rail
 ### Terraform state
 ###! Docs: https://docs.gitlab.com/ee/administration/terraform_state
 gitlab_rails['terraform_state_enabled'] = false
-# gitlab_rails['terraform_state_storage_path'] = "/var/opt/gitlab/gitlab-rails/shared/terraform_state"
+gitlab_rails['terraform_state_storage_path'] = "/var/opt/gitlab/gitlab-rails/shared/terraform_state"
 # gitlab_rails['terraform_state_object_store_enabled'] = false
 # gitlab_rails['terraform_state_object_store_remote_directory'] = "terraform"
 # gitlab_rails['terraform_state_object_store_connection'] = {
@@ -492,7 +492,7 @@ gitlab_rails['terraform_state_enabled'] = false
 
 ### CI Secure Files
 gitlab_rails['ci_secure_files_enabled'] = false
-# gitlab_rails['ci_secure_files_storage_path'] = "/var/opt/gitlab/gitlab-rails/shared/ci_secure_files"
+gitlab_rails['ci_secure_files_storage_path'] = "/var/opt/gitlab/gitlab-rails/shared/ci_secure_files"
 # gitlab_rails['ci_secure_files_object_store_enabled'] = false
 # gitlab_rails['ci_secure_files_object_store_remote_directory'] = "ci-secure-files"
 # gitlab_rails['ci_secure_files_object_store_connection'] = {
@@ -721,18 +721,18 @@ gitlab_rails['backup_keep_time'] = 0
 
 ### For storing GitLab application uploads, eg. LFS objects, build artifacts
 ###! Docs: https://docs.gitlab.com/ee/development/shared_files.html
-# gitlab_rails['shared_path'] = '/var/opt/gitlab/gitlab-rails/shared'
+gitlab_rails['shared_path'] = '/var/opt/gitlab/gitlab-rails/shared'
 
 ### For storing encrypted configuration files
 ###! Docs: https://docs.gitlab.com/ee/administration/encrypted_configuration.html
-# gitlab_rails['encrypted_settings_path'] = '/var/opt/gitlab/gitlab-rails/shared/encrypted_settings'
+gitlab_rails['encrypted_settings_path'] = '/var/opt/gitlab/gitlab-rails/shared/encrypted_settings'
 
 ### Wait for file system to be mounted
 ###! Docs: https://docs.gitlab.com/omnibus/settings/configuration.html#start-linux-package-installation-services-only-after-a-given-file-system-is-mounted
 # high_availability['mountpoint'] = ["/var/opt/gitlab/git-data", "/var/opt/gitlab/gitlab-rails/shared"]
 
 ### GitLab Shell settings for GitLab
-# gitlab_rails['gitlab_shell_ssh_port'] = 22
+gitlab_rails['gitlab_shell_ssh_port'] = 22
 # gitlab_rails['gitlab_shell_git_timeout'] = 800
 
 ### Extra customization
@@ -803,7 +803,7 @@ gitlab_rails['db_encoding'] = "unicode"
 gitlab_rails['db_database'] = "gitlab"
 gitlab_rails['db_username'] = "gitlab"
 gitlab_rails['db_password'] = "gitlab"
-gitlab_rails['db_host'] = "10.0.3.152"
+gitlab_rails['db_host'] = "10.0.3.26"
 gitlab_rails['db_port'] = 5432
 # gitlab_rails['db_socket'] = nil
 # gitlab_rails['db_sslmode'] = nil
@@ -845,7 +845,7 @@ gitlab_rails['db_port'] = 5432
 ###! Docs: https://docs.gitlab.com/omnibus/settings/redis.html
 
 #### Redis TCP connection
-gitlab_rails['redis_host'] = "10.0.3.4"
+gitlab_rails['redis_host'] = "10.0.3.153"
 gitlab_rails['redis_port'] = 6379
 # gitlab_rails['redis_ssl'] = false
 # gitlab_rails['redis_password'] = nil
@@ -1018,11 +1018,11 @@ gitlab_rails['redis_port'] = 6379
 ##! Docs: https://docs.gitlab.com/ee/administration/packages/container_registry.html
 ################################################################################
 
-registry_external_url 'http://10.0.3.73:5005'
+registry_external_url 'http://10.0.3.117:5005'
 
 ### Settings used by GitLab application
 gitlab_rails['registry_enabled'] = true
-gitlab_rails['registry_host'] = "10.0.3.73"
+gitlab_rails['registry_host'] = "10.0.3.117"
 gitlab_rails['registry_port'] = "5005"
 gitlab_rails['registry_path'] = "/var/opt/gitlab/gitlab-rails/shared/registry"
 
@@ -3041,7 +3041,7 @@ gitlab_rails['packages_object_store_enabled'] = false
 ################################################################################
 
 gitlab_rails['dependency_proxy_enabled'] = false
-#gitlab_rails['dependency_proxy_storage_path'] = "/var/opt/gitlab/gitlab-rails/shared/dependency_proxy"
+gitlab_rails['dependency_proxy_storage_path'] = "/var/opt/gitlab/gitlab-rails/shared/dependency_proxy"
 # gitlab_rails['dependency_proxy_object_store_enabled'] = false
 # gitlab_rails['dependency_proxy_object_store_proxy_download'] = false
 # gitlab_rails['dependency_proxy_object_store_remote_directory'] = "dependency_proxy"
